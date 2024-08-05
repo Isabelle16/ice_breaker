@@ -1,0 +1,20 @@
+name: langchain_env  
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12 
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyter
+  - ipykernel
+  - pip
+  - pip:
+    - python-dotenv
+    - openai
+    - langchain
+    - langchain-openai # integration with OpenAI API
+    - langchain-ollama # integration with Ollama API
+    - langchain-community # community contributions
+    - langchainhub
+    - black
