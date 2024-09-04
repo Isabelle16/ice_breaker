@@ -1,5 +1,5 @@
-from dotenv import load_dotenv
 import sys
+from dotenv import load_dotenv
 
 load_dotenv()
 from langchain_openai import ChatOpenAI
@@ -12,7 +12,7 @@ from langchain.agents import (
 from langchain import hub
 
 sys.path.append(r"C:\Users\ISAM\Documents\GitHub\ice_breaker\tools")
-from tools import get_profile_url_tavily
+from tools.tools import get_profile_url_tavily
 
 
 def lookup(name: str) -> str:
@@ -20,16 +20,16 @@ def lookup(name: str) -> str:
         temperature=0,
         model_name="gpt-3.5-turbo",
     )
-    template = """given the full name {name_of_person} I want you to retrieve the URL link to their main Linkedin profile page. Your answer should contain only a URL"""
+    template = """given the full name {name_of_person} I want you to get it me a link to their Twitter profile page, and extract from it their username.Your answer should contain only the person Twitter username"""
 
     prompt_template = PromptTemplate(
         template=template, input_variables=["name_of_person"]
     )
     tools_for_agent = [
         Tool(
-            name="Crawl Google 4 linkedin profile page",
+            name="Crawl Google 4 Twitter profile page",
             func=get_profile_url_tavily,
-            description="useful for when you need get the Linkedin Page URL",
+            description="useful for when you need get the Twitter Page URL",
         )
     ]
 
@@ -41,9 +41,9 @@ def lookup(name: str) -> str:
         input={"input": prompt_template.format_prompt(name_of_person=name)}
     )
 
-    linked_profile_url = result["output"]
-    return linked_profile_url
+    twitter_profile_url = result["output"]
+    return twitter_profile_url
 
 
 if __name__ == "__main__":
-    print(lookup(name="Eden Marco Udemy"))
+    print(lookup(name="Isabella Masiero"))

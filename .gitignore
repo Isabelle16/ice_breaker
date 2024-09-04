@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Cert
+*.pem
+
+# my env
+*.yml
